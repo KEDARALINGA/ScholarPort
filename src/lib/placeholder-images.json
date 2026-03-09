@@ -1,0 +1,28 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Student studying in a modern library",
+      "imageUrl": "https://picsum.photos/seed/scholar1/1200/600",
+      "imageHint": "student library"
+    },
+    {
+      "id": "scholarship-card-1",
+      "description": "Academic graduation cap and books",
+      "imageUrl": "https://picsum.photos/seed/scholar2/400/300",
+      "imageHint": "education scholarship"
+    },
+    {
+      "id": "scholarship-card-2",
+      "description": "Global research and science",
+      "imageUrl": "https://picsum.photos/seed/scholar3/400/300",
+      "imageHint": "science research"
+    },
+    {
+      "id": "scholarship-card-3",
+      "description": "Technology and coding",
+      "imageUrl": "https://picsum.photos/seed/scholar4/400/300",
+      "imageHint": "technology coding"
+    }
+  ]
+}

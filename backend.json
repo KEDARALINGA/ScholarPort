@@ -1,0 +1,275 @@
+
+{
+  "entities": {
+    "StudentProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "StudentProfile",
+      "type": "object",
+      "description": "Represents a student's profile information within the scholarship portal, including personal, academic, and financial details.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the StudentProfile entity."
+        },
+        "fullName": {
+          "type": "string",
+          "description": "The full name of the student."
+        },
+        "email": {
+          "type": "string",
+          "description": "The student's email address, used for communication and login.",
+          "format": "email"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "The student's contact phone number."
+        },
+        "collegeName": {
+          "type": "string",
+          "description": "The name of the college or university the student is currently attending or has attended."
+        },
+        "course": {
+          "type": "string",
+          "description": "The academic course or program the student is pursuing."
+        },
+        "familyIncome": {
+          "type": "number",
+          "description": "The annual family income of the student, used for financial aid and scholarship eligibility assessment."
+        },
+        "academicBackground": {
+          "type": "string",
+          "description": "Detailed academic history and achievements."
+        },
+        "futureGoals": {
+          "type": "string",
+          "description": "Professional and academic aspirations."
+        },
+        "documentIds": {
+          "type": "array",
+          "description": "References to various documents uploaded by the student.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the student profile was created.",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the student profile was last updated.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "fullName",
+        "email",
+        "phoneNumber",
+        "collegeName",
+        "course",
+        "familyIncome",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Scholarship": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Scholarship",
+      "type": "object",
+      "description": "Represents a scholarship opportunity available for application, managed by administrators.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Scholarship entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The official name of the scholarship."
+        },
+        "description": {
+          "type": "string",
+          "description": "A detailed description of the scholarship."
+        },
+        "eligibility": {
+          "type": "string",
+          "description": "The specific criteria students must meet."
+        },
+        "deadline": {
+          "type": "string",
+          "description": "Submission deadline.",
+          "format": "date-time"
+        },
+        "amount": {
+          "type": "number",
+          "description": "The monetary value or award amount."
+        },
+        "category": {
+          "type": "string",
+          "description": "The type of scholarship (e.g., Merit-Based, Need-Based)."
+        },
+        "adminId": {
+          "type": "string",
+          "description": "Reference to the AdminProfile who created it."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the scholarship record was created.",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the scholarship record was last updated.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "eligibility",
+        "deadline",
+        "amount",
+        "adminId",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Application": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Application",
+      "type": "object",
+      "description": "Represents a student's submission to a specific scholarship opportunity.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Application entity."
+        },
+        "studentId": {
+          "type": "string",
+          "description": "Reference to the StudentProfile."
+        },
+        "studentName": {
+          "type": "string",
+          "description": "Denormalized student name for display."
+        },
+        "scholarshipId": {
+          "type": "string",
+          "description": "Reference to the Scholarship."
+        },
+        "scholarshipName": {
+          "type": "string",
+          "description": "Denormalized scholarship name for display."
+        },
+        "academicMarks": {
+          "type": "number",
+          "description": "Student's academic performance."
+        },
+        "category": {
+          "type": "string",
+          "description": "Specific category under which the student is applying."
+        },
+        "statementOfPurpose": {
+          "type": "string",
+          "description": "The student's written statement."
+        },
+        "status": {
+          "type": "string",
+          "description": "Current status (Pending, Approved, Rejected).",
+          "enum": ["Pending", "Approved", "Rejected"]
+        },
+        "appliedAt": {
+          "type": "string",
+          "description": "Submission timestamp.",
+          "format": "date-time"
+        },
+        "decisionById": {
+          "type": "string",
+          "description": "Reference to the AdminProfile who made the decision."
+        },
+        "feedback": {
+          "type": "string",
+          "description": "Optional feedback from admin."
+        }
+      },
+      "required": [
+        "id",
+        "studentId",
+        "scholarshipId",
+        "academicMarks",
+        "status",
+        "appliedAt"
+      ]
+    },
+    "AdminProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "AdminProfile",
+      "type": "object",
+      "description": "Represents an administrator's profile.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier."
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        }
+      },
+      "required": ["id", "fullName", "email"]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/studentProfiles/{studentId}",
+        "definition": {
+          "entityName": "StudentProfile",
+          "schema": { "$ref": "#/backend/entities/StudentProfile" },
+          "description": "Individual student profiles."
+        }
+      },
+      {
+        "path": "/adminProfiles/{adminId}",
+        "definition": {
+          "entityName": "AdminProfile",
+          "schema": { "$ref": "#/backend/entities/AdminProfile" },
+          "description": "Administrator profiles."
+        }
+      },
+      {
+        "path": "/roles_admin/{adminUid}",
+        "definition": {
+          "entityName": "AdminRole",
+          "schema": { "type": "object" },
+          "description": "Database-backed access control for admins."
+        }
+      },
+      {
+        "path": "/scholarships/{scholarshipId}",
+        "definition": {
+          "entityName": "Scholarship",
+          "schema": { "$ref": "#/backend/entities/Scholarship" },
+          "description": "Available scholarships."
+        }
+      },
+      {
+        "path": "/applications/{applicationId}",
+        "definition": {
+          "entityName": "Application",
+          "schema": { "$ref": "#/backend/entities/Application" },
+          "description": "Scholarship applications."
+        }
+      }
+    ]
+  }
+}
